@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "madoka-api-collection",
 		"name": "Madoka API Collection",
-		"description": "Collection to test all API routes of the Madoka application.\n\nExecution order:\n1. Run all POST requests\n2. Copy the _id from responses to the variables\n3. Run the remaining requests",
+		"description": "Collection to test all API routes of the Madoka application.\n\nExecution order:\n1. Run folder 1 (base resources)\n2. Copy _id from responses to variables (magicalGirlId, witchId)\n3. Run folder 2 (dependent resources)\n4. Copy familiarId from response 2.2\n5. Run folders 3, 4, 5",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"variable": [
@@ -25,7 +25,7 @@
 	],
 	"item": [
 		{
-			"name": "1. POST - Create resources",
+			"name": "1. POST - Base resources (copy IDs after running)",
 			"item": [
 				{
 					"name": "1.1 POST magical girl (Madoka) → copy _id to magicalGirlId",
@@ -89,9 +89,14 @@
 							"path": ["witches"]
 						}
 					}
-				},
+				}
+			]
+		},
+		{
+			"name": "2. POST - Dependent resources (requires IDs from step 1)",
+			"item": [
 				{
-					"name": "1.4 POST witch (Charlotte) with magicalGirl",
+					"name": "2.1 POST witch (Charlotte) with magicalGirl ref",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -112,7 +117,7 @@
 					}
 				},
 				{
-					"name": "1.5 POST familiar (Pyotr) → copy _id to familiarId",
+					"name": "2.2 POST familiar (Pyotr) → copy _id to familiarId",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -133,7 +138,7 @@
 					}
 				},
 				{
-					"name": "1.6 POST familiar (Adelbert)",
+					"name": "2.3 POST familiar (Adelbert)",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -156,10 +161,10 @@
 			]
 		},
 		{
-			"name": "2. GET - Query resources",
+			"name": "3. GET - Query resources",
 			"item": [
 				{
-					"name": "2.1 GET all magical girls",
+					"name": "3.1 GET all magical girls",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -171,7 +176,7 @@
 					}
 				},
 				{
-					"name": "2.2 GET magical girl by ID",
+					"name": "3.2 GET magical girl by ID",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -183,7 +188,7 @@
 					}
 				},
 				{
-					"name": "2.3 GET all witches",
+					"name": "3.3 GET all witches",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -195,7 +200,7 @@
 					}
 				},
 				{
-					"name": "2.4 GET witch by ID",
+					"name": "3.4 GET witch by ID",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -207,7 +212,7 @@
 					}
 				},
 				{
-					"name": "2.5 GET all familiars",
+					"name": "3.5 GET all familiars",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -219,7 +224,7 @@
 					}
 				},
 				{
-					"name": "2.6 GET familiar by ID",
+					"name": "3.6 GET familiar by ID",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -233,10 +238,10 @@
 			]
 		},
 		{
-			"name": "3. PUT - Update resources",
+			"name": "4. PUT - Update resources",
 			"item": [
 				{
-					"name": "3.1 PUT update magical girl",
+					"name": "4.1 PUT update magical girl",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -257,7 +262,7 @@
 					}
 				},
 				{
-					"name": "3.2 PUT update witch",
+					"name": "4.2 PUT update witch",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -278,7 +283,7 @@
 					}
 				},
 				{
-					"name": "3.3 PUT update familiar",
+					"name": "4.3 PUT update familiar",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -301,10 +306,10 @@
 			]
 		},
 		{
-			"name": "4. DELETE - Remove resources",
+			"name": "5. DELETE - Remove resources",
 			"item": [
 				{
-					"name": "4.1 DELETE familiar",
+					"name": "5.1 DELETE familiar",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -316,7 +321,7 @@
 					}
 				},
 				{
-					"name": "4.2 DELETE witch",
+					"name": "5.2 DELETE witch",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -328,7 +333,7 @@
 					}
 				},
 				{
-					"name": "4.3 DELETE magical girl",
+					"name": "5.3 DELETE magical girl",
 					"request": {
 						"method": "DELETE",
 						"header": [],
