@@ -1,33 +1,35 @@
 extends layout
 
 block content
-    h1 Edit familiar
-    p
-        a(href='/familiar/' + familiar._id) Back to view
-    form(method='post', action='/edit-familiar/' + familiar._id, style="max-width: 20rem;")
-        p
-            label(for='name') Name
-            br
-            input(type='text', name='name', id='name', required=true, value=familiar.name, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
-        p
-            label(for='witch') Witch
-            br
-            select(name='witch', id='witch', required=true, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+    .mb-6
+        span.text-xs.text-gray-400.uppercase.font-medium Edit Unit
+        h1.text-4xl.font-black.uppercase.tracking-tight EDIT FAMILIAR
+    
+    form.bg-white.border-2.border-black(method='post', action='/edit-familiar/' + familiar._id)
+        .p-4.border-b-2.border-black.flex.flex-col.md_flex-row.md_items-center.gap-2
+            label.text-xs.text-gray-400.uppercase.w-32.font-medium(for='name') Name
+            input.border-2.border-black.px-3.py-2.flex-1(type='text', name='name', id='name', required, value=familiar.name)
+        
+        .p-4.border-b-2.border-black.flex.flex-col.md_flex-row.md_items-center.gap-2
+            label.text-xs.text-gray-400.uppercase.w-32.font-medium(for='witch') Parent Witch
+            select.border-2.border-black.px-3.py-2(name='witch', id='witch', required)
                 each w in witches
                     option(value=w._id, selected=(familiar.witch && (familiar.witch._id ? familiar.witch._id.toString() : familiar.witch.toString()) === w._id.toString()))= w.name
-        p
-            label(for='type') Type
-            br
-            select(name='type', id='type', required=true, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+        
+        .p-4.border-b-2.border-black.flex.flex-col.md_flex-row.md_items-center.gap-2
+            label.text-xs.text-gray-400.uppercase.w-32.font-medium(for='type') Type
+            select.border-2.border-black.px-3.py-2(name='type', id='type', required)
                 each opt in ['Minion', 'Elite', 'Boss', 'Other']
                     option(value=opt, selected=(familiar.type === opt))= opt
-        p
-            label(for='strength') Strength
-            br
-            input(type='number', name='strength', id='strength', min=0, max=100, value=familiar.strength, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
-        p
-            label(for='isEvolved')
-                input(type='checkbox', name='isEvolved', id='isEvolved', checked=familiar.isEvolved)
-                |  Evolved
-        p
-            button(type='submit', style="background: #6b4c9a; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;") Update
+        
+        .p-4.border-b-2.border-black.flex.flex-col.md_flex-row.md_items-center.gap-2
+            label.text-xs.text-gray-400.uppercase.w-32.font-medium(for='strength') Strength
+            input.border-2.border-black.px-3.py-2.w-24(type='number', name='strength', id='strength', min=0, max=100, value=familiar.strength)
+        
+        .p-4.border-b-2.border-black.flex.items-center.gap-4
+            label.text-xs.text-gray-400.uppercase.w-32.font-medium(for='isEvolved') Evolved
+            input.w-5.h-5(type='checkbox', name='isEvolved', id='isEvolved', checked=familiar.isEvolved)
+        
+        .p-4.flex.gap-2
+            a.bg-gray-200.px-4.py-2.text-sm.uppercase.font-semibold.hover_bg-gray-300(href='/familiar/' + familiar._id) Cancel
+            button.bg-emerald-500.text-white.px-4.py-2.text-sm.uppercase.font-semibold.hover_bg-black(type='submit') Update

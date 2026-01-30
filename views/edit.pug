@@ -1,35 +1,37 @@
 extends layout
 
 block content
-    h1 Edit magical girl
-    p
-        a(href='/view/' + magicalgirl._id) Back to view
-    form(method='post', action='/edit/' + magicalgirl._id, style="max-width: 20rem;")
-        p
-            label(for='name') Name
-            br
-            input(type='text', name='name', id='name', required=true, value=magicalgirl.name, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
-        p
-            label(for='soulGemColor') Soul gem color
-            br
-            input(type='text', name='soulGemColor', id='soulGemColor', required=true, value=magicalgirl.soulGemColor, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
-        p
-            label(for='weapon') Weapon
-            br
-            select(name='weapon', id='weapon', required=true, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+    .mb-6
+        span.text-xs.text-gray-400.uppercase.font-medium Edit Contract
+        h1.text-4xl.font-black.uppercase.tracking-tight EDIT MAGICAL GIRL
+    
+    form.bg-white.border-2.border-black(method='post', action='/edit/' + magicalgirl._id)
+        .p-4.border-b-2.border-black.flex.flex-col.md_flex-row.md_items-center.gap-2
+            label.text-xs.text-gray-400.uppercase.w-32.font-medium(for='name') Name
+            input.border-2.border-black.px-3.py-2.flex-1(type='text', name='name', id='name', required, value=magicalgirl.name)
+        
+        .p-4.border-b-2.border-black.flex.flex-col.md_flex-row.md_items-center.gap-2
+            label.text-xs.text-gray-400.uppercase.w-32.font-medium(for='soulGemColor') Soul Gem
+            input.border-2.border-black.px-3.py-2.flex-1(type='text', name='soulGemColor', id='soulGemColor', required, value=magicalgirl.soulGemColor)
+        
+        .p-4.border-b-2.border-black.flex.flex-col.md_flex-row.md_items-center.gap-2
+            label.text-xs.text-gray-400.uppercase.w-32.font-medium(for='weapon') Weapon
+            select.border-2.border-black.px-3.py-2(name='weapon', id='weapon', required)
                 each opt in ['Bow', 'Spear', 'Sword', 'Gun', 'Shield', 'Other']
                     option(value=opt, selected=(magicalgirl.weapon === opt))= opt
-        p
-            label(for='wish') Wish
-            br
-            input(type='text', name='wish', id='wish', value=magicalgirl.wish, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
-        p
-            label(for='powerLevel') Power level
-            br
-            input(type='number', name='powerLevel', id='powerLevel', min=1, max=100, value=magicalgirl.powerLevel, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
-        p
-            label(for='isWitch')
-                input(type='checkbox', name='isWitch', id='isWitch', checked=magicalgirl.isWitch)
-                |  Is witch
-        p
-            button(type='submit', style="background: #6b4c9a; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;") Update
+        
+        .p-4.border-b-2.border-black.flex.flex-col.md_flex-row.md_items-center.gap-2
+            label.text-xs.text-gray-400.uppercase.w-32.font-medium(for='wish') Wish
+            input.border-2.border-black.px-3.py-2.flex-1(type='text', name='wish', id='wish', value=magicalgirl.wish)
+        
+        .p-4.border-b-2.border-black.flex.flex-col.md_flex-row.md_items-center.gap-2
+            label.text-xs.text-gray-400.uppercase.w-32.font-medium(for='powerLevel') Power Level
+            input.border-2.border-black.px-3.py-2.w-24(type='number', name='powerLevel', id='powerLevel', min=1, max=100, value=magicalgirl.powerLevel)
+        
+        .p-4.border-b-2.border-black.flex.items-center.gap-4
+            label.text-xs.text-gray-400.uppercase.w-32.font-medium(for='isWitch') Is Witch
+            input.w-5.h-5(type='checkbox', name='isWitch', id='isWitch', checked=magicalgirl.isWitch)
+        
+        .p-4.flex.gap-2
+            a.bg-gray-200.px-4.py-2.text-sm.uppercase.font-semibold.hover_bg-gray-300(href='/view/' + magicalgirl._id) Cancel
+            button.bg-pink-500.text-white.px-4.py-2.text-sm.uppercase.font-semibold.hover_bg-black(type='submit') Update

@@ -1,24 +1,35 @@
 extends layout
 
 block content
-    h1= magicalgirl.name
-    dl(style="max-width: 24rem;")
-        dt(style="margin-top: 0.5rem; font-weight: bold;") Soul gem color
-        dd(style="margin: 0;")= magicalgirl.soulGemColor
-        dt(style="margin-top: 0.5rem; font-weight: bold;") Weapon
-        dd(style="margin: 0;")= magicalgirl.weapon
-        dt(style="margin-top: 0.5rem; font-weight: bold;") Wish
-        dd(style="margin: 0;")= magicalgirl.wish
-        dt(style="margin-top: 0.5rem; font-weight: bold;") Power level
-        dd(style="margin: 0;")= magicalgirl.powerLevel
-        dt(style="margin-top: 0.5rem; font-weight: bold;") Is witch
-        dd(style="margin: 0;")= magicalgirl.isWitch ? 'Yes' : 'No'
-        dt(style="margin-top: 0.5rem; font-weight: bold;") Contract date
-        dd(style="margin: 0;")= magicalgirl.contractDate ? new Date(magicalgirl.contractDate).toLocaleDateString() : '—'
-    p(style="margin-top: 1rem;")
-        a(href='/list') Back to list
-        |  ·
-        a(href='/edit/' + magicalgirl._id) Edit
-        |  ·
-        form(method='post', action='/view/' + magicalgirl._id + '/delete', style="display: inline; margin-left: 0.25rem;")
-            button(type='submit', style="background: #8b3a3a; color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 4px; cursor: pointer;") Delete
+    .mb-6
+        span.text-xs.text-gray-400.uppercase.font-medium Contract ##{magicalgirl._id}
+        h1.text-4xl.font-black.uppercase.tracking-tight= magicalgirl.name
+    
+    .flex.gap-2.mb-6
+        a.bg-gray-200.px-4.py-2.text-sm.uppercase.font-semibold.hover_bg-gray-300(href='/list') ← Back
+        a.bg-black.text-white.px-4.py-2.text-sm.uppercase.font-semibold.hover_bg-pink-500(href='/edit/' + magicalgirl._id) Edit
+        form(method='post', action='/view/' + magicalgirl._id + '/delete', style="display:inline;")
+            button.bg-red-500.text-white.px-4.py-2.text-sm.uppercase.font-semibold.hover_bg-red-700(type='submit') Delete
+    
+    .bg-white.border-2.border-black.grid.grid-cols-2.md_grid-cols-3
+        .p-4.border-b-2.border-r-2.border-black
+            .text-xs.text-gray-400.uppercase.font-medium Soul Gem
+            .font-semibold.mt-1= magicalgirl.soulGemColor
+        .p-4.border-b-2.border-r-2.border-black
+            .text-xs.text-gray-400.uppercase.font-medium Weapon
+            .font-semibold.mt-1= magicalgirl.weapon
+        .p-4.border-b-2.border-black
+            .text-xs.text-gray-400.uppercase.font-medium Power
+            .font-semibold.mt-1= magicalgirl.powerLevel
+        .p-4.border-b-2.border-r-2.border-black
+            .text-xs.text-gray-400.uppercase.font-medium Status
+            if magicalgirl.isWitch
+                span.bg-red-500.text-white.text-xs.px-2.py-1.uppercase.mt-1.inline-block.font-semibold Corrupted
+            else
+                span.bg-green-500.text-white.text-xs.px-2.py-1.uppercase.mt-1.inline-block.font-semibold Active
+        .p-4.border-b-2.border-black.col-span-2
+            .text-xs.text-gray-400.uppercase.font-medium Wish
+            .font-semibold.mt-1= magicalgirl.wish || '—'
+        .p-4.col-span-3
+            .text-xs.text-gray-400.uppercase.font-medium Contract Date
+            .font-semibold.mt-1= magicalgirl.contractDate ? new Date(magicalgirl.contractDate).toLocaleDateString() : '—'

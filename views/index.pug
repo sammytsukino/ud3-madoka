@@ -1,10 +1,27 @@
 extends layout
 
 block content
-    h1 Puella Magi Madoka Magica
-    p
-        a(href='/list') Magical girls
-        |  ·
-        a(href='/list-witches') Witches
-        |  ·
-        a(href='/list-familiars') Familiars
+    .bg-white.border-2.border-black.py-10.px-8.text-center.mb-8
+        h1.font-black.uppercase.tracking-tighter.leading-none(class="text-4xl sm:text-5xl md:text-8xl lg:text-9xl") MAGICAL
+        h1.font-black.uppercase.tracking-tighter.leading-none.text-rose-500(class="text-4xl sm:text-5xl md:text-8xl lg:text-9xl") GIRL ⋆｡⋆୨୧˚
+        h1.font-black.uppercase.tracking-tighter.leading-none(class="text-4xl sm:text-5xl md:text-8xl lg:text-9xl") DATABASE
+        .mt-6.text-xs.text-gray-400.uppercase.tracking-widest.font-light
+            | Mitakihara City — Japan
+            br
+            | 35° 41' N 139° 41' E
+    
+    .grid.grid-cols-1.md_grid-cols-3.gap-4
+        a.block.bg-white.border-2.border-black.p-6.transition(href="/list" class="hover:text-pink-500")
+            .text-xs.text-gray-400.uppercase.font-medium 01
+            .text-2xl.font-bold.uppercase.mt-2 Magical Girls
+            .text-sm.mt-1.font-light Soul gems & contracts
+        
+        a.block.bg-white.border-2.border-black.p-6.transition(href="/list-witches" class="hover:text-purple-600")
+            .text-xs.text-gray-400.uppercase.font-medium 02
+            .text-2xl.font-bold.uppercase.mt-2 Witches
+            .text-sm.mt-1.font-light Labyrinths & barriers
+        
+        a.block.bg-white.border-2.border-black.p-6.transition(href="/list-familiars" class="hover:text-emerald-500")
+            .text-xs.text-gray-400.uppercase.font-medium 03
+            .text-2xl.font-bold.uppercase.mt-2 Familiars
+            .text-sm.mt-1.font-light Minions & spawns
