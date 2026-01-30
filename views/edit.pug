@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    h1 Edit magical girl
+    p
+        a(href='/view/' + magicalgirl._id) Back to view
+    form(method='post', action='/edit/' + magicalgirl._id, style="max-width: 20rem;")
+        p
+            label(for='name') Name
+            br
+            input(type='text', name='name', id='name', required=true, value=magicalgirl.name, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+        p
+            label(for='soulGemColor') Soul gem color
+            br
+            input(type='text', name='soulGemColor', id='soulGemColor', required=true, value=magicalgirl.soulGemColor, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+        p
+            label(for='weapon') Weapon
+            br
+            select(name='weapon', id='weapon', required=true, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+                each opt in ['Bow', 'Spear', 'Sword', 'Gun', 'Shield', 'Other']
+                    option(value=opt, selected=(magicalgirl.weapon === opt))= opt
+        p
+            label(for='wish') Wish
+            br
+            input(type='text', name='wish', id='wish', value=magicalgirl.wish, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+        p
+            label(for='powerLevel') Power level
+            br
+            input(type='number', name='powerLevel', id='powerLevel', min=1, max=100, value=magicalgirl.powerLevel, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+        p
+            label(for='isWitch')
+                input(type='checkbox', name='isWitch', id='isWitch', checked=magicalgirl.isWitch)
+                |  Is witch
+        p
+            button(type='submit', style="background: #6b4c9a; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;") Update

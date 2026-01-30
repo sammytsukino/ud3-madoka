@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    h1= witch.name
+    dl(style="max-width: 24rem;")
+        dt(style="margin-top: 0.5rem; font-weight: bold;") Barrier type
+        dd(style="margin: 0;")= witch.barrierType
+        dt(style="margin-top: 0.5rem; font-weight: bold;") Danger level
+        dd(style="margin: 0;")= witch.dangerLevel
+        dt(style="margin-top: 0.5rem; font-weight: bold;") Defeated
+        dd(style="margin: 0;")= witch.defeated ? 'Yes' : 'No'
+        dt(style="margin-top: 0.5rem; font-weight: bold;") Magical girl
+        dd(style="margin: 0;")= witch.magicalGirl ? witch.magicalGirl.name : '—'
+        dt(style="margin-top: 0.5rem; font-weight: bold;") First appearance
+        dd(style="margin: 0;")= witch.firstAppearance ? new Date(witch.firstAppearance).toLocaleDateString() : '—'
+        dt(style="margin-top: 0.5rem; font-weight: bold;") Last seen
+        dd(style="margin: 0;")= witch.lastSeen ? new Date(witch.lastSeen).toLocaleDateString() : '—'
+    p(style="margin-top: 1rem;")
+        a(href='/list-witches') Back to list
+        |  ·
+        a(href='/edit-witch/' + witch._id) Edit
+        |  ·
+        form(method='post', action='/witch/' + witch._id + '/delete', style="display: inline; margin-left: 0.25rem;")
+            button(type='submit', style="background: #8b3a3a; color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 4px; cursor: pointer;") Delete

@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    h1 New magical girl
+    p
+        a(href='/list') Back
+    form(method='post', action='/process', style="max-width: 20rem;")
+        p
+            label(for='name') Name
+            br
+            input(type='text', name='name', id='name', required=true, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+        p
+            label(for='soulGemColor') Soul gem color
+            br
+            input(type='text', name='soulGemColor', id='soulGemColor', required=true, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+        p
+            label(for='weapon') Weapon
+            br
+            select(name='weapon', id='weapon', required=true, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+                option(value='Bow') Bow
+                option(value='Spear') Spear
+                option(value='Sword') Sword
+                option(value='Gun') Gun
+                option(value='Shield') Shield
+                option(value='Other') Other
+        p
+            label(for='wish') Wish
+            br
+            input(type='text', name='wish', id='wish', style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+        p
+            label(for='powerLevel') Power level
+            br
+            input(type='number', name='powerLevel', id='powerLevel', min=1, max=100, value=10, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+        p
+            label(for='isWitch')
+                input(type='checkbox', name='isWitch', id='isWitch')
+                |  Is witch
+        p
+            button(type='submit', style="background: #6b4c9a; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;") Save

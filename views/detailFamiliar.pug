@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1= familiar.name
+    dl(style="max-width: 24rem;")
+        dt(style="margin-top: 0.5rem; font-weight: bold;") Type
+        dd(style="margin: 0;")= familiar.type
+        dt(style="margin-top: 0.5rem; font-weight: bold;") Strength
+        dd(style="margin: 0;")= familiar.strength
+        dt(style="margin-top: 0.5rem; font-weight: bold;") Evolved
+        dd(style="margin: 0;")= familiar.isEvolved ? 'Yes' : 'No'
+        dt(style="margin-top: 0.5rem; font-weight: bold;") Witch
+        dd(style="margin: 0;")= familiar.witch ? familiar.witch.name : '—'
+        dt(style="margin-top: 0.5rem; font-weight: bold;") Created
+        dd(style="margin: 0;")= familiar.createdAt ? new Date(familiar.createdAt).toLocaleDateString() : '—'
+    p(style="margin-top: 1rem;")
+        a(href='/list-familiars') Back to list
+        |  ·
+        a(href='/edit-familiar/' + familiar._id) Edit
+        |  ·
+        form(method='post', action='/familiar/' + familiar._id + '/delete', style="display: inline; margin-left: 0.25rem;")
+            button(type='submit', style="background: #8b3a3a; color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 4px; cursor: pointer;") Delete

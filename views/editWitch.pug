@@ -1,0 +1,38 @@
+extends layout
+
+block content
+    h1 Edit witch
+    p
+        a(href='/witch/' + witch._id) Back to view
+    form(method='post', action='/edit-witch/' + witch._id, style="max-width: 20rem;")
+        p
+            label(for='name') Name
+            br
+            input(type='text', name='name', id='name', required=true, value=witch.name, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+        p
+            label(for='barrierType') Barrier type
+            br
+            select(name='barrierType', id='barrierType', required=true, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+                each opt in ['Labyrinth', 'Pocket', 'Reality', 'Other']
+                    option(value=opt, selected=(witch.barrierType === opt))= opt
+        p
+            label(for='dangerLevel') Danger level
+            br
+            input(type='number', name='dangerLevel', id='dangerLevel', min=1, max=10, value=witch.dangerLevel, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+        p
+            label(for='defeated')
+                input(type='checkbox', name='defeated', id='defeated', checked=witch.defeated)
+                |  Defeated
+        p
+            label(for='magicalGirl') Magical girl (optional)
+            br
+            select(name='magicalGirl', id='magicalGirl', style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+                option(value='') —
+                each mg in magicalgirls
+                    option(value=mg._id, selected=(witch.magicalGirl && (witch.magicalGirl._id ? witch.magicalGirl._id.toString() : witch.magicalGirl.toString()) === mg._id.toString()))= mg.name
+        p
+            label(for='firstAppearance') First appearance (YYYY-MM-DD)
+            br
+            input(type='text', name='firstAppearance', id='firstAppearance', value=(witch.firstAppearance ? new Date(witch.firstAppearance).toISOString().slice(0,10) : ''), style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+        p
+            button(type='submit', style="background: #6b4c9a; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;") Update

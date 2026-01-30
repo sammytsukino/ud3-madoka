@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    h1 New familiar
+    p
+        a(href='/list-familiars') Back
+    form(method='post', action='/process-familiar', style="max-width: 20rem;")
+        p
+            label(for='name') Name
+            br
+            input(type='text', name='name', id='name', required=true, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+        p
+            label(for='witch') Witch
+            br
+            select(name='witch', id='witch', required=true, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+                each w in witches
+                    option(value=w._id)= w.name
+        p
+            label(for='type') Type
+            br
+            select(name='type', id='type', required=true, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+                option(value='Minion') Minion
+                option(value='Elite') Elite
+                option(value='Boss') Boss
+                option(value='Other') Other
+        p
+            label(for='strength') Strength
+            br
+            input(type='number', name='strength', id='strength', min=0, max=100, value=5, style="width: 100%; padding: 0.3rem; margin-top: 0.2rem;")
+        p
+            label(for='isEvolved')
+                input(type='checkbox', name='isEvolved', id='isEvolved')
+                |  Evolved
+        p
+            button(type='submit', style="background: #6b4c9a; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;") Save

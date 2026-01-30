@@ -1,0 +1,17 @@
+{
+  "name": "ud3-madoka",
+  "version": "1.0.0",
+  "description": "Puella Magi Madoka Magica - Express MongoDB app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongodb": "^7.0.0",
+    "mongoose": "^9.1.5",
+    "pug": "^3.0.3"
+  }
+}
